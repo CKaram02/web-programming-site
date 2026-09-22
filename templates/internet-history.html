@@ -1,58 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The History of the Internet</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-    <header>
-        <h1>The History of the Internet</h1>
-        <nav>
-            <a href="/">Home</a> | 
-            <a href="/web-history">Web History</a>
-        </nav>
-    </header>
+{% block title %}The History of the Internet{% endblock %}
 
-    <main>
-        <section>
-            <p>The Internet is a global system of interconnected computer networks that facilitates communication between devices worldwide[cite: 1]. Originally conceived in the late 1950s as a U.S. government initiative to engineer a resilient communication network, the project materialized as ARPANET, connecting select academic and research institutions[cite: 1]. Through foundational developments such as packet switching and the TCP/IP protocol suite, ARPANET incrementally evolved into a decentralized global infrastructure[cite: 1]. The following timeline outlines the key historical and technical milestones of this evolution[cite: 1].</p>
-        </section>
+{% block header_extra %}
+<div class="container page-title-block">
+    <h1>The History of the Internet</h1>
+</div>
+{% endblock %}
 
-        <section>
-            <h2>Timeline of the Internet</h2>
-            <ul>
-                <li><strong>1969: ARPANET goes online</strong> — First operational packet-switching network created by ARPA[cite: 1].</li>
-                <li><strong>1971: First network email sent</strong> — Ray Tomlinson introduced message sharing across computers using the @ symbol[cite: 1].</li>
-                <li><strong>1974: Creation of TCP/IP</strong> — Vint Cerf and Bob Kahn designed TCP/IP as a universal communication language[cite: 1].</li>
-                <li><strong>1983: The TCP/IP Cutover</strong> — ARPANET mandated TCP/IP on Jan 1, marking the birth of the modern Internet[cite: 1].</li>
-                <li><strong>1984: Domain Name System (DNS) established</strong> — Paul Mockapetris created DNS, mapping numerical IP addresses to human-readable names[cite: 1].</li>
-            </ul>
-        </section>
+{% block main %}
+<section>
+    <p>The Internet is a global network of interconnected computer networks that enables seamless, standardized communication between millions of public, private, academic, and government devices worldwide. Its foundation was laid in the late 1950s and 1960s during the Cold War era, driven by the U.S. Department of Defense's desire to create a robust, fault-tolerant communication system that could survive partial node failures. This vision materialized through the creation of ARPANET, funded by the Advanced Research Projects Agency (ARPA). Through breakthroughs in packet-switching theory and the development of universal networking protocols like TCP/IP, ARPANET evolved from a small university network into a decentralized, high-speed global digital infrastructure that underpins modern global commerce, communication, and computing infrastructure.</p>
+</section>
 
-        <section>
-            <h2>Key Technologies of the Internet</h2>
-            <ul>
-                <li><strong>Packet Switching:</strong> Splits data into small chunks that travel independently and reassemble at the destination[cite: 1].</li>
-                <li><strong>TCP/IP:</strong> The protocol suite where IP routes data and TCP ensures complete, ordered delivery[cite: 1].</li>
-                <li><strong>DNS (Domain Name System):</strong> Converts domain names (e.g., google.com) into numerical IP addresses[cite: 1].</li>
-            </ul>
-        </section>
+<section>
+    <h2>Timeline of the Internet</h2>
+    <ul class="styled-list">
+        <li><strong>1969: ARPANET goes online</strong> — The first operational packet-switching network was established by the U.S. Department of Defense's Advanced Research Projects Agency (ARPA). The first transmitted message was sent between mainframes at UCLA and Stanford University.</li>
+        <li><strong>1971: First network email sent</strong> — Computer engineer Ray Tomlinson developed the first network email system for ARPANET, introducing the iconic "@" symbol to route user messages across different host computers.</li>
+        <li><strong>1974: Creation of TCP/IP</strong> — Computer scientists Vint Cerf and Bob Kahn published a ground-breaking paper detailing the Transmission Control Protocol (TCP), establishing an open standard for interconnecting disparate computer networks.</li>
+        <li><strong>1983: The TCP/IP Cutover</strong> — On January 1, 1983, ARPANET officially mandated TCP/IP as its standard communication protocol suite, replacing the older Network Control Program (NCP) and marking the official birth of the modern Internet.</li>
+        <li><strong>1984: Domain Name System (DNS) established</strong> — Paul Mockapetris created the Domain Name System, replacing unwieldy numerical IP hosts files with a distributed, human-readable naming architecture using domain suffixes such as .com, .edu, and .gov.</li>
+    </ul>
+</section>
 
-        <section>
-            <h2>References</h2>
-            <ul>
-                <li><a href="https://www.ietf.org/rfc/rfc801.txt" target="_blank" rel="noopener noreferrer">RFC 801 - Jon Postel (1983)</a>[cite: 1]</li>
-                <li><a href="https://www.ietf.org/rfc/rfc882.txt" target="_blank" rel="noopener noreferrer">RFC 882 &amp; 883 - Paul Mockapetris (1983)</a>[cite: 1]</li>
-                <li><a href="https://ieeexplore.ieee.org/document/1092259" target="_blank" rel="noopener noreferrer">IEEE Trans. Comm., Vol. COM-22, No. 5 - Vint Cerf &amp; Bob Kahn (1974)</a>[cite: 1]</li>
-            </ul>
-        </section>
-    </main>
+<section>
+    <h2>Key Technologies of the Internet</h2>
+    <ul class="styled-list">
+        <li><strong>Packet Switching:</strong> A networking technique that breaks continuous data streams into small, standardized units called packets. Each packet travels independently across dynamic network paths before being reassembled in exact order at its destination, maximizing network efficiency and resilience.</li>
+        <li><strong>TCP/IP Protocol Suite:</strong> The core suite governing internet communications. The Internet Protocol (IP) handles packet addressing and routing across network boundaries, while the Transmission Control Protocol (TCP) ensures reliable, error-checked, ordered stream delivery between applications.</li>
+        <li><strong>DNS (Domain Name System):</strong> The hierarchical, decentralized database system that translates human-friendly domain names (e.g., <code>google.com</code>) into raw, numerical IP addresses (e.g., <code>142.250.190.46</code>) required for computer network routing.</li>
+    </ul>
+</section>
 
-    <footer>
-        <p>This website was created for educational purposes only.</p>
-    </footer>
-
-</body>
-</html>
+<section>
+    <h2>References</h2>
+    <ul class="styled-list">
+        <li><a href="https://www.ietf.org/rfc/rfc801.txt" target="_blank" rel="noopener noreferrer">RFC 801: NCP/TCP Transition Plan — Jon Postel (1983)</a></li>
+        <li><a href="https://www.ietf.org/rfc/rfc882.txt" target="_blank" rel="noopener noreferrer">RFC 882 &amp; 883: Domain Names Concepts and Facilities — Paul Mockapetris (1983)</a></li>
+        <li><a href="https://ieeexplore.ieee.org/document/1092259" target="_blank" rel="noopener noreferrer">A Protocol for Packet Network Intercommunication — Vint Cerf &amp; Bob Kahn (IEEE Trans. Comm., 1974)</a></li>
+    </ul>
+</section>
+{% endblock %}

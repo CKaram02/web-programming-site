@@ -1,121 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History of the Internet</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-    <!-- Main Header & Global Navigation -->
-    <header>
-        <h1>The History of the Internet</h1>
-        <p><mark>Understanding the underlying infrastructure of global networking.</mark></p>
-        <nav aria-label="Page Navigation">
-            <ul>
-                <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#milestones">Key Milestones</a></li>
-                <li><a href="#technologies">Key Technologies</a></li>
-                <li><a href="#sources">Reliable Sources</a></li>
-            </ul>
-        </nav>
-    </header>
+{% block title %}History of the Internet (AI){% endblock %}
 
-    <!-- Main Content Container -->
-    <main>
-        <!-- Introduction Section -->
-        <section id="introduction">
-            <h2>1. Introduction</h2>
-            <article>
-                <p>
-                    The <strong>Internet</strong> is a global network of interconnected computer networks that communicate using standardized protocols. 
-                    Unlike a single physical hardware device or isolated system, it serves as the underlying digital infrastructure 
-                    that allows data packets to travel instantly across the globe. Emerging from Cold War military research and academic 
-                    collaboration in the late 20th century, the Internet grew from connecting a few university mainframe computers to establishing 
-                    the foundation for global communication, finance, and daily digital life.
-                </p>
-            </article>
-        </section>
+{% block header_extra %}
+<div class="container page-title-block">
+    <h1>The History of the Internet</h1>
+    <p class="subtitle"><mark>Understanding the underlying infrastructure of global networking.</mark></p>
+    <nav class="sub-nav" aria-label="Page Sections">
+        <a href="#introduction">Introduction</a> |
+        <a href="#milestones">Key Milestones</a> |
+        <a href="#technologies">Key Technologies</a> |
+        <a href="#sources">Reliable Sources</a>
+    </nav>
+</div>
+{% endblock %}
 
-        <!-- Milestones Section -->
-        <section id="milestones">
-            <h2>2. Key Historical Milestones</h2>
-            <figure>
-                <figcaption>Timeline of major events in Internet history</figcaption>
-                <table border="1" cellpadding="8" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th scope="col">Year</th>
-                            <th scope="col">Event</th>
-                            <th scope="col">Why It Mattered</th>
-                            <th scope="col">Source</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><time datetime="1969">1969</time></td>
-                            <td>Creation of ARPANET</td>
-                            <td>Proved the viability of packet switching by connecting university host computers.</td>
-                            <td>DARPA Archives &amp; Computer History Museum</td>
-                        </tr>
-                        <tr>
-                            <td><time datetime="1983-01-01">1983</time></td>
-                            <td>Adoption of TCP/IP (Jan 1)</td>
-                            <td>Established a universal standard protocol suite, creating the modern Internet.</td>
-                            <td>IETF RFC 801</td>
-                        </tr>
-                        <tr>
-                            <td><time datetime="1984">1984</time></td>
-                            <td>Introduction of DNS</td>
-                            <td>Replaced numerical IP addresses with human-readable domain names.</td>
-                            <td>Internet Society (ISOC)</td>
-                        </tr>
-                        <tr>
-                            <td><time datetime="1995">1995</time></td>
-                            <td>NSFNET Decommissioning</td>
-                            <td>Opened internet routing to commercial providers, sparking the public internet era.</td>
-                            <td>National Science Foundation</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </figure>
-        </section>
+{% block main %}
+<section id="introduction">
+    <h2>1. Introduction</h2>
+    <article>
+        <p>
+            The <strong>Internet</strong> is an open, global network of interconnected computer networks operating on unified, standardized communication protocols. Unlike single localized hardware configurations or closed private networks, it functions as a global digital medium, enabling data packets to travel across optical fiber cables, wireless bands, and satellites in milliseconds. Originating from Cold War defense initiatives and academic research collaborations during the late 20th century, the Internet expanded from linking four university mainframes into an irreplaceable global public infrastructure powering modern communication, commerce, research, and governance.
+        </p>
+    </article>
+</section>
 
-        <!-- Key Technologies Section -->
-        <section id="technologies">
-            <h2>3. Key Technologies</h2>
-            <article>
-                <h3>Foundational Building Blocks</h3>
-                <dl>
-                    <dt><strong>Packet Switching</strong></dt>
-                    <dd>A method of slicing data streams into smaller blocks (packets) containing header routing information so multiple connections can share the same channel.</dd>
-                    
-                    <dt><strong>TCP/IP</strong></dt>
-                    <dd>The foundational communication protocol suite; IP handles packet addressing and routing while TCP manages reliable transfer and error checking.</dd>
+<section id="milestones">
+    <h2>2. Key Historical Milestones</h2>
+    <figure>
+        <figcaption>Timeline of major events in Internet history</figcaption>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th scope="col">Year</th>
+                    <th scope="col">Event</th>
+                    <th scope="col">Why It Mattered</th>
+                    <th scope="col">Source</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><time datetime="1969">1969</time></td>
+                    <td>Creation of ARPANET</td>
+                    <td>Demonstrated the operational feasibility of packet switching by connecting university host mainframes across long distances.</td>
+                    <td>DARPA Archives &amp; Computer History Museum</td>
+                </tr>
+                <tr>
+                    <td><time datetime="1983-01-01">1983</time></td>
+                    <td>Adoption of TCP/IP (Jan 1)</td>
+                    <td>Replaced NCP with TCP/IP as the universal standard protocol suite, laying the technical foundation for the modern Internet.</td>
+                    <td>IETF RFC 801</td>
+                </tr>
+                <tr>
+                    <td><time datetime="1984">1984</time></td>
+                    <td>Introduction of DNS</td>
+                    <td>Architected a scalable, hierarchical database that substituted numerical IP routing addresses with human-readable domain names.</td>
+                    <td>Internet Society (ISOC)</td>
+                </tr>
+                <tr>
+                    <td><time datetime="1995">1995</time></td>
+                    <td>NSFNET Decommissioning</td>
+                    <td>Transitioned network backbone management from government oversight to commercial providers, sparking the public internet boom.</td>
+                    <td>National Science Foundation</td>
+                </tr>
+            </tbody>
+        </table>
+    </figure>
+</section>
 
-                    <dt><strong>Domain Name System (DNS)</strong></dt>
-                    <dd>A distributed hierarchical database system that maps human-friendly domain names to numerical IP addresses.</dd>
-                </dl>
-            </article>
-        </section>
+<section id="technologies">
+    <h2>3. Key Technologies</h2>
+    <article>
+        <h3>Foundational Building Blocks</h3>
+        <dl class="def-list">
+            <dt><strong>Packet Switching</strong></dt>
+            <dd>A foundational network transmission method that divides continuous data blocks into discrete, addressed packets routed independently across shared, dynamic channels.</dd>
+            
+            <dt><strong>TCP/IP</strong></dt>
+            <dd>The primary layered networking suite: IP (Internet Protocol) handles host addressing and packet routing, while TCP (Transmission Control Protocol) guarantees reliable packet transmission and flow control.</dd>
 
-        <!-- Sources Section -->
-        <section id="sources">
-            <h2>4. Reliable Sources</h2>
-            <article>
-                <ol>
-                    <li><a href="https://www.computerhistory.org" target="_blank" rel="noopener noreferrer">Computer History Museum</a></li>
-                    <li><a href="https://www.internetsociety.org" target="_blank" rel="noopener noreferrer">Internet Society — Brief History of the Internet</a></li>
-                    <li><a href="https://www.ietf.org" target="_blank" rel="noopener noreferrer">Internet Engineering Task Force (IETF) Standards</a></li>
-                </ol>
-            </article>
-        </section>
-    </main>
+            <dt><strong>Domain Name System (DNS)</strong></dt>
+            <dd>A global distributed database service that translates human-friendly domain names into raw numerical IP addresses required for underlying computer routing.</dd>
+        </dl>
+    </article>
+</section>
 
-    <!-- Page Footer -->
-    <footer>
-        <p><small>&copy; <time datetime="2026">2026</time> Web Programming Course Project | History of the Internet</small></p>
-    </footer>
-
-</body>
-</html>
+<section id="sources">
+    <h2>4. Reliable Sources</h2>
+    <article>
+        <ol class="styled-list">
+            <li><a href="https://www.computerhistory.org" target="_blank" rel="noopener noreferrer">Computer History Museum — Internet History Exhibit</a></li>
+            <li><a href="https://www.internetsociety.org" target="_blank" rel="noopener noreferrer">Internet Society — Brief History of the Internet</a></li>
+            <li><a href="https://www.ietf.org" target="_blank" rel="noopener noreferrer">Internet Engineering Task Force (IETF) Standards Repository</a></li>
+        </ol>
+    </article>
+</section>
+{% endblock %}

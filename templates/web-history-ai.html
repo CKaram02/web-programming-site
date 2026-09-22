@@ -1,120 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History of the World Wide Web</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-    <!-- Main Header & Global Navigation -->
-    <header>
-        <h1>The History of the World Wide Web</h1>
-        <p><mark>Exploring the universal information space that transformed global communication.</mark></p>
-        <nav aria-label="Page Navigation">
-            <ul>
-                <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#milestones">Key Milestones</a></li>
-                <li><a href="#technologies">Key Technologies</a></li>
-                <li><a href="#sources">Reliable Sources</a></li>
-            </ul>
-        </nav>
-    </header>
+{% block title %}History of the World Wide Web (AI){% endblock %}
 
-    <!-- Main Content Container -->
-    <main>
-        <!-- Introduction Section -->
-        <section id="introduction">
-            <h2>1. Introduction</h2>
-            <article>
-                <p>
-                    While the Internet provides the global network infrastructure, the <strong>World Wide Web (WWW)</strong> is an information-sharing application 
-                    built <em>on top</em> of that infrastructure. Invented in 1989 by Sir Tim Berners-Lee, the Web allows users to navigate 
-                    between documents and media using clickable hyperlinks. It transformed the Internet from a command-line network used primarily by 
-                    academics and researchers into a visually accessible platform open to the public.
-                </p>
-            </article>
-        </section>
+{% block header_extra %}
+<div class="container page-title-block">
+    <h1>The History of the World Wide Web</h1>
+    <p class="subtitle"><mark>Exploring the universal information space that transformed global communication.</mark></p>
+    <nav class="sub-nav" aria-label="Page Sections">
+        <a href="#introduction">Introduction</a> |
+        <a href="#milestones">Key Milestones</a> |
+        <a href="#technologies">Key Technologies</a> |
+        <a href="#sources">Reliable Sources</a>
+    </nav>
+</div>
+{% endblock %}
 
-        <!-- Milestones Section -->
-        <section id="milestones">
-            <h2>2. Key Historical Milestones</h2>
-            <figure>
-                <figcaption>Timeline of major developments in the World Wide Web</figcaption>
-                <table border="1" cellpadding="8" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th scope="col">Year</th>
-                            <th scope="col">Event</th>
-                            <th scope="col">Why It Mattered</th>
-                            <th scope="col">Source</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><time datetime="1989">1989</time></td>
-                            <td>Proposal for WWW</td>
-                            <td>Tim Berners-Lee conceptualized a universal hypertext information management system at CERN.</td>
-                            <td>CERN Historical Archives</td>
-                        </tr>
-                        <tr>
-                            <td><time datetime="1991-08-06">1991</time></td>
-                            <td>First Web Page Public</td>
-                            <td>The world's first website (info.cern.ch) went live to the general public.</td>
-                            <td>W3C Historical Archives</td>
-                        </tr>
-                        <tr>
-                            <td><time datetime="1993-04-30">1993</time></td>
-                            <td>CERN Releases Web Source Code</td>
-                            <td>CERN put the WWW software into the public domain royalty-free, driving mass adoption.</td>
-                            <td>CERN Public Declaration</td>
-                        </tr>
-                        <tr>
-                            <td><time datetime="1993">1993</time></td>
-                            <td>Release of NCSA Mosaic</td>
-                            <td>Introduced the first popular graphical web browser capable of displaying inline images.</td>
-                            <td>NCSA Archives</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </figure>
-        </section>
+{% block main %}
+<section id="introduction">
+    <h2>1. Introduction</h2>
+    <article>
+        <p>
+            While the Internet serves as the physical and transport network layer of linked hardware devices, the <strong>World Wide Web (WWW)</strong> is an application-level platform constructed <em>on top</em> of this global network. Invented in 1989 by Sir Tim Berners-Lee, the Web provides a unified workspace where documents, images, and resources are identified by addresses and interconnected by hypertext links. The Web evolved the Internet from terminal-based commands reserved for specialized academic networks into an intuitive, visually rich ecosystem accessible to the general public.
+        </p>
+    </article>
+</section>
 
-        <!-- Key Technologies Section -->
-        <section id="technologies">
-            <h2>3. Key Technologies</h2>
-            <article>
-                <h3>Core Web Standards</h3>
-                <dl>
-                    <dt><strong>HTML (HyperText Markup Language)</strong></dt>
-                    <dd>The standard formatting language used to structure text, images, and links on web pages.</dd>
+<section id="milestones">
+    <h2>2. Key Historical Milestones</h2>
+    <figure>
+        <figcaption>Timeline of major developments in the World Wide Web</figcaption>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th scope="col">Year</th>
+                    <th scope="col">Event</th>
+                    <th scope="col">Why It Mattered</th>
+                    <th scope="col">Source</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><time datetime="1989">1989</time></td>
+                    <td>Proposal for WWW</td>
+                    <td>Tim Berners-Lee formulated a global hypertext network proposal to streamline document sharing across CERN researchers.</td>
+                    <td>CERN Historical Archives</td>
+                </tr>
+                <tr>
+                    <td><time datetime="1991-08-06">1991</time></td>
+                    <td>First Web Page Public</td>
+                    <td>The world's first public web page (hosted on <code>info.cern.ch</code>) went live, introducing the Web to the broader internet community.</td>
+                    <td>W3C Historical Archives</td>
+                </tr>
+                <tr>
+                    <td><time datetime="1993-04-30">1993</time></td>
+                    <td>CERN Releases Web Source Code</td>
+                    <td>CERN released the fundamental Web software into the public domain on a royalty-free basis, triggering widespread global adoption.</td>
+                    <td>CERN Public Declaration</td>
+                </tr>
+                <tr>
+                    <td><time datetime="1993">1993</time></td>
+                    <td>Release of NCSA Mosaic</td>
+                    <td>Introduced the first widely adopted graphical web browser capable of displaying inline images alongside formatted text.</td>
+                    <td>NCSA Archives</td>
+                </tr>
+            </tbody>
+        </table>
+    </figure>
+</section>
 
-                    <dt><strong>HTTP (HyperText Transfer Protocol)</strong></dt>
-                    <dd>The application-layer communication protocol that defines how client browsers request resources from web servers.</dd>
+<section id="technologies">
+    <h2>3. Key Technologies</h2>
+    <article>
+        <h3>Core Web Standards</h3>
+        <dl class="def-list">
+            <dt><strong>HTML (HyperText Markup Language)</strong></dt>
+            <dd>The foundational formatting language utilized to define structural hierarchy, text markup, media embeds, and interactive hyperlinks across web pages.</dd>
 
-                    <dt><strong>URL (Uniform Resource Locator)</strong></dt>
-                    <dd>The unique standard address format used to locate documents and resources anywhere on the Web.</dd>
-                </dl>
-            </article>
-        </section>
+            <dt><strong>HTTP (HyperText Transfer Protocol)</strong></dt>
+            <dd>The primary application-layer protocol defining structured request-and-response transactions between user client browsers and hosting web servers.</dd>
 
-        <!-- Sources Section -->
-        <section id="sources">
-            <h2>4. Reliable Sources</h2>
-            <article>
-                <ol>
-                    <li><a href="https://www.w3.org/History.html" target="_blank" rel="noopener noreferrer">W3C — History of the Web</a></li>
-                    <li><a href="https://home.cern/science/computing/birth-web" target="_blank" rel="noopener noreferrer">CERN — The Birth of the Web</a></li>
-                    <li><a href="https://www.si.edu" target="_blank" rel="noopener noreferrer">Smithsonian Institution Computer History Collections</a></li>
-                </ol>
-            </article>
-        </section>
-    </main>
+            <dt><strong>URL (Uniform Resource Locator)</strong></dt>
+            <dd>The standard global addressing scheme designed to uniquely reference individual documents, assets, and services host-wide.</dd>
+        </dl>
+    </article>
+</section>
 
-    <!-- Page Footer -->
-    <footer>
-        <p><small>&copy; <time datetime="2026">2026</time> Web Programming Course Project | History of the World Wide Web</small></p>
-    </footer>
-
-</body>
-</html>
+<section id="sources">
+    <h2>4. Reliable Sources</h2>
+    <article>
+        <ol class="styled-list">
+            <li><a href="https://www.w3.org/History.html" target="_blank" rel="noopener noreferrer">W3C — Detailed History of the World Wide Web</a></li>
+            <li><a href="https://home.cern/science/computing/birth-web" target="_blank" rel="noopener noreferrer">CERN — The Birth of the Web Archives</a></li>
+            <li><a href="https://www.si.edu" target="_blank" rel="noopener noreferrer">Smithsonian Institution — Computer &amp; Web History Collections</a></li>
+        </ol>
+    </article>
+</section>
+{% endblock %}
