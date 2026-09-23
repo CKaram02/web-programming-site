@@ -24,9 +24,27 @@
     </header>
 
     <main class="site-main">
-        <div class="container">
+        <div class="container layout-wrapper">
+        <div class="main-content">
             {% block main %}{% endblock %}
         </div>
+        <aside class="site-sidebar">
+            <div class="sidebar-widget">
+                <h3>Quick Info</h3>
+                <p>Educational Portfolio</p>
+                <p>Course: GIN446</p>
+                <p>USEK — Fall 2026</p>
+            </div>
+            <div class="sidebar-widget">
+                <h3>Navigation</h3>
+                <ul class="sidebar-links">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('internet_history') }}">Internet History</a></li>
+                    <li><a href="{{ url_for('web_history') }}">Web History</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
     </main>
 
     <footer class="site-footer">
