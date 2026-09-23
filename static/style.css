@@ -1,170 +1,386 @@
+/* ==========================================================================
+   Soft Ambient Indigo — Flask Portfolio Stylesheet (static/style.css)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design System Tokens (:root)
+   -------------------------------------------------------------------------- */
 :root {
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --background: #f8fafc;
-  --surface: #ffffff;
-  --text: #0f172a;
-  --text-muted: #475569;
-  --border: #e2e8f0;
-  --radius: 8px;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  /* Color Palette */
+  --bg-color: #eef2f6;
+  --bg-gradient: radial-gradient(circle at 50% 0%, #e0e7ff 0%, #eef2f6 70%);
+  --surface-glass: rgba(240, 244, 248, 0.75);
+  --surface-glass-hover: rgba(255, 255, 255, 0.85);
+  --surface-glass-card: rgba(255, 255, 255, 0.60);
+  
+  --primary-blue: #1e3a8a;
+  --primary-blue-hover: #1d4ed8;
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+  --border-glass: rgba(255, 255, 255, 0.6);
+  --border-subtle: rgba(100, 116, 139, 0.15);
+  
+  /* Typography */
+  --font-main: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-code: 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+
+  /* Geometry & Spacing */
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --spacing-container: 1200px;
+  --padding-open: 2rem;
+  
+  /* Glass Effect & Depth */
+  --glass-blur: blur(16px);
+  --glass-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 
+                 0 4px 12px -2px rgba(15, 23, 42, 0.03);
 }
 
-* {
+/* --------------------------------------------------------------------------
+   2. Modern Reset & Base Elements
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: var(--background);
-  color: var(--text);
-  line-height: 1.6;
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  line-height: 1.65;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Shared Layout Container */
+.container {
+  width: 100%;
+  max-width: var(--spacing-container);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--padding-open);
+  padding-right: var(--padding-open);
+}
+
+/* Typography Defaults */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-blue);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.65rem; margin-top: 1.5rem; }
+h3 { font-size: 1.25rem; margin-top: 1.25rem; }
+
+p {
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+}
+
+p strong {
+  color: var(--text-primary);
 }
 
 a {
-  color: var(--primary);
+  color: var(--primary-blue);
   text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: var(--primary-blue-hover);
 }
 
-.container {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+code {
+  font-family: var(--font-code);
+  font-size: 0.9em;
+  background-color: rgba(30, 58, 138, 0.06);
+  color: var(--primary-blue);
+  padding: 0.2rem 0.4rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(30, 58, 138, 0.1);
 }
 
+mark {
+  background-color: rgba(30, 58, 138, 0.08);
+  color: var(--primary-blue);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   3. Header & Navigation Menu
+   -------------------------------------------------------------------------- */
 .site-header {
-  background-color: var(--surface);
-  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--border-glass);
+  box-shadow: var(--glass-shadow);
   padding: 1rem 0;
 }
 
 .header-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  gap: 1.5rem;
 }
 
 .site-logo .logo-text {
   font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--primary-blue);
 }
 
 .site-nav {
   display: flex;
+  align-items: center;
+  gap: 0.75rem;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
 }
 
 .site-nav a {
-  color: var(--text-muted);
   font-weight: 500;
+  font-size: 0.925rem;
+  color: var(--text-muted);
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
 }
 
-.hero-banner, .page-title-block {
-  padding-top: 1.5rem;
-  text-align: center;
+.site-nav a:hover {
+  color: var(--primary-blue);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
-.subtitle {
-  margin-top: 0.5rem;
-  font-size: 1rem;
+/* Header Extra Block (Hero Banner & Page Titles) */
+.hero-banner, 
+.page-title-block {
+  margin-top: 1.5rem;
+  padding: var(--padding-open);
+  background: var(--surface-glass-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+}
+
+.hero-banner h1, 
+.page-title-block h1 {
+  margin-bottom: 0.5rem;
+}
+
+.page-title-block .subtitle {
+  margin-bottom: 1rem;
 }
 
 .sub-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
   margin-top: 0.75rem;
-  font-size: 0.9rem;
 }
 
+.sub-nav a {
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   4. Main Content & Section Styling
+   -------------------------------------------------------------------------- */
 .site-main {
   flex: 1;
-  padding: 2rem 0;
+  padding-top: 2.5rem;
+  padding-bottom: 3.5rem;
 }
 
-section {
-  background: var(--surface);
-  padding: 1.5rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  margin-bottom: 1.5rem;
+/* Page Divisions & Sections as Frosted Glass Cards */
+.site-main section {
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: var(--padding-open);
+  margin-bottom: 2rem;
+  box-shadow: var(--glass-shadow);
 }
 
-h2 {
-  margin-bottom: 1rem;
-  color: var(--text);
-  border-bottom: 2px solid var(--border);
-  padding-bottom: 0.5rem;
+.site-main section:last-child {
+  margin-bottom: 0;
 }
 
-h3 {
-  margin: 1rem 0 0.5rem;
+/* --------------------------------------------------------------------------
+   5. Lists & Weekly Work Elements
+   -------------------------------------------------------------------------- */
+ul, ol {
+  padding-left: 1.25rem;
+  margin-bottom: 1.25rem;
+  color: var(--text-muted);
+}
+
+li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
 }
 
 .styled-list, .weekly-list {
-  padding-left: 1.25rem;
+  list-style-type: none;
+  padding-left: 0;
 }
 
 .styled-list li, .weekly-list li {
-  margin-bottom: 0.5rem;
+  position: relative;
+  background: var(--surface-glass-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.75rem;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.styled-list li:hover, .weekly-list li:hover {
+  transform: translateY(-2px);
+  background: var(--surface-glass-hover);
+  box-shadow: var(--glass-shadow);
+}
+
+.weekly-list a {
+  font-weight: 600;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   6. Data Tables & Figures
+   -------------------------------------------------------------------------- */
+figure {
+  margin: 1.5rem 0;
+  width: 100%;
+  overflow-x: auto;
+}
+
+figcaption {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
 }
 
 .data-table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--surface-glass-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
-.data-table th, .data-table td {
-  border: 1px solid var(--border);
-  padding: 0.75rem;
+.data-table th, 
+.data-table td {
+  padding: 0.85rem 1.15rem;
   text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.95rem;
 }
 
 .data-table th {
-  background-color: var(--background);
+  background-color: rgba(30, 58, 138, 0.05);
+  color: var(--primary-blue);
+  font-weight: 700;
 }
 
-figcaption {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+.data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   7. Definition Lists
+   -------------------------------------------------------------------------- */
+.def-list {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1rem;
 }
 
 .def-list dt {
-  font-weight: bold;
-  margin-top: 0.75rem;
+  font-size: 1.1rem;
+  color: var(--primary-blue);
 }
 
 .def-list dd {
-  margin-left: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.site-footer {
-  background-color: var(--surface);
-  border-top: 1px solid var(--border);
-  padding: 1.5rem 0;
-  text-align: center;
-  font-size: 0.875rem;
+  margin-left: 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--primary-blue);
   color: var(--text-muted);
-  margin-top: auto;
 }
 
-@media (min-width: 640px) {
+/* --------------------------------------------------------------------------
+   8. Footer Layout
+   -------------------------------------------------------------------------- */
+.site-footer {
+  margin-top: auto;
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--border-glass);
+  padding: 1.75rem 0;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.footer-container p {
+  margin-bottom: 0;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   9. Responsive Design
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
   .header-container {
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-nav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.4rem; }
+  
+  :root {
+    --padding-open: 1.25rem;
   }
 }
