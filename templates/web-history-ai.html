@@ -1,98 +1,195 @@
-{% extends "base.html" %}
+ {% extends "base.html" %}
+
+
 
 {% block title %}History of the World Wide Web (AI){% endblock %}
 
+
+
 {% block header_extra %}
+
 <div class="container page-title-block">
+
     <h1>The History of the World Wide Web</h1>
+
     <p class="subtitle"><mark>Exploring the universal information space that transformed global communication.</mark></p>
+
     <nav class="sub-nav" aria-label="Page Sections">
+
         <a href="#introduction">Introduction</a> |
+
         <a href="#milestones">Key Milestones</a> |
+
         <a href="#technologies">Key Technologies</a> |
+
         <a href="#sources">Reliable Sources</a>
+
     </nav>
+
 </div>
+
 {% endblock %}
 
+
+
 {% block main %}
+
 <section id="introduction">
+
     <h2>1. Introduction</h2>
+
     <article>
+
         <p>
+
             While the Internet serves as the physical and transport network layer of linked hardware devices, the <strong>World Wide Web (WWW)</strong> is an application-level platform constructed <em>on top</em> of this global network. Invented in 1989 by Sir Tim Berners-Lee, the Web provides a unified workspace where documents, images, and resources are identified by addresses and interconnected by hypertext links. The Web evolved the Internet from terminal-based commands reserved for specialized academic networks into an intuitive, visually rich ecosystem accessible to the general public.
+
         </p>
+
     </article>
+
 </section>
+
+
 
 <section id="milestones">
+
     <h2>2. Key Historical Milestones</h2>
+
     <figure>
+
         <figcaption>Timeline of major developments in the World Wide Web</figcaption>
+
         <table class="data-table">
+
             <thead>
+
                 <tr>
+
                     <th scope="col">Year</th>
+
                     <th scope="col">Event</th>
+
                     <th scope="col">Why It Mattered</th>
+
                     <th scope="col">Source</th>
+
                 </tr>
+
             </thead>
+
             <tbody>
+
                 <tr>
+
                     <td><time datetime="1989">1989</time></td>
+
                     <td>Proposal for WWW</td>
+
                     <td>Tim Berners-Lee formulated a global hypertext network proposal to streamline document sharing across CERN researchers.</td>
+
                     <td>CERN Historical Archives</td>
+
                 </tr>
+
                 <tr>
+
                     <td><time datetime="1991-08-06">1991</time></td>
+
                     <td>First Web Page Public</td>
+
                     <td>The world's first public web page (hosted on <code>info.cern.ch</code>) went live, introducing the Web to the broader internet community.</td>
+
                     <td>W3C Historical Archives</td>
+
                 </tr>
+
                 <tr>
+
                     <td><time datetime="1993-04-30">1993</time></td>
+
                     <td>CERN Releases Web Source Code</td>
+
                     <td>CERN released the fundamental Web software into the public domain on a royalty-free basis, triggering widespread global adoption.</td>
+
                     <td>CERN Public Declaration</td>
+
                 </tr>
+
                 <tr>
+
                     <td><time datetime="1993">1993</time></td>
+
                     <td>Release of NCSA Mosaic</td>
+
                     <td>Introduced the first widely adopted graphical web browser capable of displaying inline images alongside formatted text.</td>
+
                     <td>NCSA Archives</td>
+
                 </tr>
+
             </tbody>
+
         </table>
+
     </figure>
+
 </section>
+
+
 
 <section id="technologies">
+
     <h2>3. Key Technologies</h2>
+
     <article>
+
         <h3>Core Web Standards</h3>
+
         <dl class="def-list">
+
             <dt><strong>HTML (HyperText Markup Language)</strong></dt>
+
             <dd>The foundational formatting language utilized to define structural hierarchy, text markup, media embeds, and interactive hyperlinks across web pages.</dd>
 
+
+
             <dt><strong>HTTP (HyperText Transfer Protocol)</strong></dt>
+
             <dd>The primary application-layer protocol defining structured request-and-response transactions between user client browsers and hosting web servers.</dd>
 
+
+
             <dt><strong>URL (Uniform Resource Locator)</strong></dt>
+
             <dd>The standard global addressing scheme designed to uniquely reference individual documents, assets, and services host-wide.</dd>
+
         </dl>
+
     </article>
+
 </section>
 
+
+
 <section id="sources">
+
     <h2>4. Reliable Sources</h2>
+
     <article>
+
         <ol class="styled-list">
+
             <li><a href="https://www.w3.org/History.html" target="_blank" rel="noopener noreferrer">W3C — Detailed History of the World Wide Web</a></li>
+
             <li><a href="https://home.cern/science/computing/birth-web" target="_blank" rel="noopener noreferrer">CERN — The Birth of the Web Archives</a></li>
+
             <li><a href="https://www.si.edu" target="_blank" rel="noopener noreferrer">Smithsonian Institution — Computer &amp; Web History Collections</a></li>
+
         </ol>
+
     </article>
+
 </section>
+
 {% endblock %}

@@ -1,44 +1,87 @@
-{% extends "base.html" %}
+ {% extends "base.html" %}
+
+
 
 {% block title %}The History of the Internet{% endblock %}
 
+
+
 {% block header_extra %}
+
 <div class="container page-title-block">
+
     <h1>The History of the Internet</h1>
+
 </div>
+
 {% endblock %}
 
+
+
 {% block main %}
+
 <section>
+
     <p>The Internet is a global network of interconnected computer networks that enables seamless, standardized communication between millions of public, private, academic, and government devices worldwide. Its foundation was laid in the late 1950s and 1960s during the Cold War era, driven by the U.S. Department of Defense's desire to create a robust, fault-tolerant communication system that could survive partial node failures. This vision materialized through the creation of ARPANET, funded by the Advanced Research Projects Agency (ARPA). Through breakthroughs in packet-switching theory and the development of universal networking protocols like TCP/IP, ARPANET evolved from a small university network into a decentralized, high-speed global digital infrastructure that underpins modern global commerce, communication, and computing infrastructure.</p>
+
 </section>
 
+
+
 <section>
+
     <h2>Timeline of the Internet</h2>
+
     <ul class="styled-list">
+
         <li><strong>1969: ARPANET goes online</strong> — The first operational packet-switching network was established by the U.S. Department of Defense's Advanced Research Projects Agency (ARPA). The first transmitted message was sent between mainframes at UCLA and Stanford University.</li>
+
         <li><strong>1971: First network email sent</strong> — Computer engineer Ray Tomlinson developed the first network email system for ARPANET, introducing the iconic "@" symbol to route user messages across different host computers.</li>
+
         <li><strong>1974: Creation of TCP/IP</strong> — Computer scientists Vint Cerf and Bob Kahn published a ground-breaking paper detailing the Transmission Control Protocol (TCP), establishing an open standard for interconnecting disparate computer networks.</li>
+
         <li><strong>1983: The TCP/IP Cutover</strong> — On January 1, 1983, ARPANET officially mandated TCP/IP as its standard communication protocol suite, replacing the older Network Control Program (NCP) and marking the official birth of the modern Internet.</li>
+
         <li><strong>1984: Domain Name System (DNS) established</strong> — Paul Mockapetris created the Domain Name System, replacing unwieldy numerical IP hosts files with a distributed, human-readable naming architecture using domain suffixes such as .com, .edu, and .gov.</li>
+
     </ul>
+
 </section>
 
+
+
 <section>
+
     <h2>Key Technologies of the Internet</h2>
+
     <ul class="styled-list">
+
         <li><strong>Packet Switching:</strong> A networking technique that breaks continuous data streams into small, standardized units called packets. Each packet travels independently across dynamic network paths before being reassembled in exact order at its destination, maximizing network efficiency and resilience.</li>
+
         <li><strong>TCP/IP Protocol Suite:</strong> The core suite governing internet communications. The Internet Protocol (IP) handles packet addressing and routing across network boundaries, while the Transmission Control Protocol (TCP) ensures reliable, error-checked, ordered stream delivery between applications.</li>
+
         <li><strong>DNS (Domain Name System):</strong> The hierarchical, decentralized database system that translates human-friendly domain names (e.g., <code>google.com</code>) into raw, numerical IP addresses (e.g., <code>142.250.190.46</code>) required for computer network routing.</li>
+
     </ul>
+
 </section>
 
+
+
 <section>
+
     <h2>References</h2>
+
     <ul class="styled-list">
+
         <li><a href="https://www.ietf.org/rfc/rfc801.txt" target="_blank" rel="noopener noreferrer">RFC 801: NCP/TCP Transition Plan — Jon Postel (1983)</a></li>
+
         <li><a href="https://www.ietf.org/rfc/rfc882.txt" target="_blank" rel="noopener noreferrer">RFC 882 &amp; 883: Domain Names Concepts and Facilities — Paul Mockapetris (1983)</a></li>
+
         <li><a href="https://ieeexplore.ieee.org/document/1092259" target="_blank" rel="noopener noreferrer">A Protocol for Packet Network Intercommunication — Vint Cerf &amp; Bob Kahn (IEEE Trans. Comm., 1974)</a></li>
+
     </ul>
+
 </section>
+
 {% endblock %}

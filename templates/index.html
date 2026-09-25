@@ -1,23 +1,45 @@
-{% extends "base.html" %}
+ {% extends "base.html" %}
+
+
 
 {% block title %}Home | Portfolio{% endblock %}
 
+
+
 {% block header_extra %}
+
 <div class="container hero-banner">
+
     <h1>Web Programming Portfolio — Charbel Karam</h1>
+
     <p>A live site that grows one page or feature every week.</p>
+
 </div>
+
 {% endblock %}
 
+
+
 {% block main %}
+
 <section class="weekly-section">
+
     <h2>Weekly Work</h2>
+
     <ul class="weekly-list">
+
         {% for item in weekly_work %}
+
             <li><a href="{{ item.url }}">Week {{ item.week }} — {{ item.title }}</a></li>
+
         {% else %}
+
             <li>Week 1 — live site launched.</li>
+
         {% endfor %}
+
     </ul>
+
 </section>
+
 {% endblock %}
