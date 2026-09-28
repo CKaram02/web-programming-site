@@ -1,90 +1,118 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>{% block title %}My Web Programming Portfolio{% endblock %}</title>
-
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
+    {% block head %}{% endblock %}
 </head>
-
 <body>
 
+    <!-- Fixed Header -->
     <header class="site-header">
-
         <div class="container header-container">
+            <div class="header-brand">
+                <a href="{{ url_for('home') }}" class="site-logo">
+                    <h1 class="logo-title">Web Programming Portfolio — Charbel Karam</h1>
+                </a>
+                <p class="logo-subtitle">A live site that grows one page or feature every week.</p>
+            </div>
 
-            <a href="{{ url_for('home') }}" class="site-logo">
-
-                <span class="logo-text">Charbel Karam</span>
-
-            </a>
-
-            <nav class="site-nav" aria-label="Global Navigation">
-
-                <a href="{{ url_for('home') }}">Home</a>
-
-                <a href="{{ url_for('internet_history') }}">Internet History</a>
-
-                <a href="{{ url_for('internet_history_ai') }}">Internet History (AI)</a>
-
-                <a href="{{ url_for('web_history') }}">Web History</a>
-
-                <a href="{{ url_for('web_history_ai') }}">Web History (AI)</a>
-
-            </nav>
-
+            <div class="header-controls">
+                <button id="sidebarToggle" class="sidebar-toggle-btn" aria-label="Toggle Table of Contents">
+                    <span class="menu-icon">☰</span>
+                    <span>Contents</span>
+                </button>
+            </div>
         </div>
-
-        {% block header_extra %}{% endblock %}
-
     </header>
 
-
-
+    <!-- Main Content Area -->
     <main class="site-main">
-
         <div class="container layout-wrapper">
-        <div class="main-content">
-            {% block main %}{% endblock %}
+            
+            <!-- Page Title Card sits cleanly below the fixed header -->
+            {% block header_extra %}{% endblock %}
+
+            <div class="main-content">
+                {% block main %}{% endblock %}
+                {% block content %}{% endblock %}
+            </div>
+
+            <!-- Table of Contents Sidebar Drawer -->
+            <aside class="site-sidebar" id="siteSidebar">
+                <div class="sidebar-header">
+                    <h3>Table of Contents</h3>
+                    <button id="sidebarClose" class="sidebar-close-btn" aria-label="Close Sidebar">&times;</button>
+                </div>
+                
+                <nav class="sidebar-nav">
+                    <div class="sidebar-section">
+                        <h4>Main Pages</h4>
+                        <ul class="sidebar-links">
+                            <li><a href="{{ url_for('home') }}">Home Portfolio</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h4>Engineering Profile</h4>
+                        <ul class="sidebar-links">
+                            <li><a href="{{ url_for('submit_profile') }}">Academic Profile Form</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h4>Internet History</h4>
+                        <ul class="sidebar-links">
+                            <li><a href="{{ url_for('internet_history') }}">Internet History (Standard)</a></li>
+                            <li><a href="{{ url_for('internet_history_ai') }}">Internet History (AI Version)</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h4>Web History</h4>
+                        <ul class="sidebar-links">
+                            <li><a href="{{ url_for('web_history') }}">Web History (Standard)</a></li>
+                            <li><a href="{{ url_for('web_history_ai') }}">Web History (AI Version)</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Overlay for Mobile Focus -->
+            <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
         </div>
-        <aside class="site-sidebar">
-            <div class="sidebar-widget">
-                <h3>Quick Info</h3>
-                <p>Educational Portfolio</p>
-                <p>Course: GIN446</p>
-                <p>USEK — Fall 2026</p>
-            </div>
-            <div class="sidebar-widget">
-                <h3>Navigation</h3>
-                <ul class="sidebar-links">
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="{{ url_for('internet_history') }}">Internet History</a></li>
-                    <li><a href="{{ url_for('web_history') }}">Web History</a></li>
-                </ul>
-            </div>
-        </aside>
-    </div>
     </main>
 
-
-
+    <!-- Fixed Footer -->
     <footer class="site-footer">
-
         <div class="container footer-container">
-
-            <p>This website is created for educational purposes only, as part of the GIN446 - Web Programming course, School of Engineering, USEK. (Fall 2026-2027)</p>
-
+            <p>Educational Portfolio — GIN446 Web Programming | USEK (Fall 2026-2027)</p>
         </div>
-
     </footer>
 
-</body>
+    <!-- Sidebar Script -->
+    <script>
+        const toggleBtn = document.getElementById('sidebarToggle');
+        const closeBtn = document.getElementById('sidebarClose');
+        const sidebar = document.getElementById('siteSidebar');
+        const overlay = document.getElementById('sidebarOverlay');
 
+        function openSidebar() {
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        toggleBtn.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+    </script>
+</body>
 </html>
