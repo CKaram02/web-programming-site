@@ -1,207 +1,362 @@
-/* ======================================================
-   QUIZ PAGE ENHANCED STYLES
-   ====================================================== */
+/* ==========================================================================
+   Quiz — "Aurora Lab" theme (uses tokens from style.css)
+   All rules scoped to the quiz card so nothing leaks into header/footer.
+   ========================================================================== */
 
-/* Main Container Card */
-.container {
-  max-width: 760px;
-  margin: 40px auto;
-  background: #ffffff;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+.main-content > .container {
+  position: relative;
+  max-width: 780px;
+  margin: 2rem auto 0;
+  padding: 2.6rem;
+  border: 1px solid transparent;
+  border-radius: var(--r-lg);
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    conic-gradient(from var(--angle), var(--line) 0 55%, var(--violet), var(--cyan), var(--pink), var(--line) 95%) border-box;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  animation: spin 7s linear infinite, rise 0.8s var(--ease) both;
 }
 
-/* Headings */
-h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #1a1f36;
+/* Glow orb */
+.main-content > .container::before {
+  content: "";
+  position: absolute;
+  top: -180px;
+  left: 50%;
+  width: 420px;
+  height: 420px;
+  margin-left: -210px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 92, 255, 0.28), transparent 65%);
+  filter: blur(20px);
+  pointer-events: none;
+  animation: float 10s ease-in-out infinite alternate;
+}
+
+.main-content > .container > * { position: relative; }
+
+/* Title */
+.main-content > .container > h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.9rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
   text-align: center;
-  margin-bottom: 24px;
-  letter-spacing: -0.5px;
+  margin-bottom: 2rem;
+  padding-bottom: 0.1em;
+  background: var(--grad);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s linear infinite;
 }
 
-h2 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #2b314e;
-  line-height: 1.5;
-}
-
-/* Progress Indicator */
-#progress {
-  font-size: 0.875rem;
+/* Progress chip */
+.main-content > .container #progress {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #635bfc;
-  margin-bottom: 8px;
+  letter-spacing: 0.12em;
+  color: var(--cyan);
+  background: rgba(34, 211, 238, 0.08);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  border-radius: 999px;
 }
 
-#questionText {
-  margin-top: 10px;
-  margin-bottom: 24px;
+.main-content > .container #progress::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  animation: blink 1.4s ease-in-out infinite;
 }
 
-/* Multiple Choice Option Cards */
-.choice {
+/* Question */
+.main-content > .container #questionText {
+  margin: 1rem 0 1.6rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.8vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+}
+
+/* Choices — rebuilt by quiz.js on every question, so they re-animate */
+.main-content > .container #choices {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.main-content > .container .choice {
   display: flex;
   align-items: center;
-  background-color: #f8f9fc;
-  border: 2px solid #eef0f7;
-  border-radius: 10px;
-  margin: 12px 0;
-  padding: 14px 18px;
+  gap: 0.95rem;
+  padding: 1.05rem 1.2rem;
   font-size: 1rem;
-  color: #3c4257;
   font-weight: 500;
+  color: var(--text-strong);
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r-md);
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(var(--line-strong), var(--line-strong)) border-box;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
+  transition: translate 0.35s var(--spring), box-shadow 0.3s ease;
+  animation: pop 0.5s var(--spring) both;
 }
 
-.choice:hover {
-  background-color: #ffffff;
-  border-color: #635bfc;
-  box-shadow: 0 4px 12px rgba(99, 91, 252, 0.1);
-  transform: translateY(-1px);
+.main-content > .container .choice:nth-child(1) { animation-delay: 0.04s; }
+.main-content > .container .choice:nth-child(2) { animation-delay: 0.1s; }
+.main-content > .container .choice:nth-child(3) { animation-delay: 0.16s; }
+.main-content > .container .choice:nth-child(4) { animation-delay: 0.22s; }
+.main-content > .container .choice:nth-child(n + 5) { animation-delay: 0.28s; }
+
+.main-content > .container .choice:hover {
+  translate: 6px 0;
+  box-shadow: 0 10px 26px -14px rgba(124, 92, 255, 0.7);
 }
 
-/* Custom Radio Input Alignment */
-.choice input[type="radio"] {
+.main-content > .container .choice:focus-within {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+/* Selected answer: tinted fill + gradient border */
+.main-content > .container .choice:has(input:checked) {
+  border-color: transparent;
+  background:
+    linear-gradient(color-mix(in srgb, var(--violet) 14%, var(--card)), color-mix(in srgb, var(--violet) 14%, var(--card))) padding-box,
+    var(--grad) border-box;
+  box-shadow: var(--glow);
+}
+
+/* Custom radio */
+.main-content > .container .choice input[type="radio"] {
   appearance: none;
   -webkit-appearance: none;
-  width: 18px;
-  height: 18px;
-  border: 2px solid #a3acb9;
-  border-radius: 50%;
-  outline: none;
-  margin-right: 14px;
+  flex-shrink: 0;
   display: grid;
   place-content: center;
-  transition: all 0.2s ease;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  border: 2px solid var(--line-strong);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
-.choice input[type="radio"]::before {
+.main-content > .container .choice input[type="radio"]::before {
   content: "";
   width: 8px;
   height: 8px;
   border-radius: 50%;
+  background: #fff;
   transform: scale(0);
-  transition: 0.15s transform ease-in-out;
-  background-color: #ffffff;
+  transition: transform 0.35s var(--spring);
 }
 
-.choice input[type="radio"]:checked {
-  background-color: #635bfc;
-  border-color: #635bfc;
+.main-content > .container .choice input[type="radio"]:checked {
+  border-color: transparent;
+  background: var(--grad);
+  box-shadow: 0 0 14px rgba(124, 92, 255, 0.7);
 }
 
-.choice input[type="radio"]:checked::before {
+.main-content > .container .choice input[type="radio"]:checked::before {
   transform: scale(1);
 }
 
-.choice:has(input[type="radio"]:checked) {
-  background-color: #f4f3ff;
-  border-color: #635bfc;
-  color: #635bfc;
-}
-
-/* Navigation Buttons Group */
-.navigation {
+/* Navigation */
+.main-content > .container .navigation {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-top: 32px;
+  gap: 0.6rem;
+  margin-top: 2.1rem;
 }
 
-button {
-  padding: 12px 18px;
-  border-radius: 8px;
-  border: none;
-  background-color: #edf2f7;
-  color: #4a5568;
+.main-content > .container .navigation button {
+  padding: 0.8rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
   font-weight: 600;
-  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-strong);
+  background: var(--input-bg);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.3s var(--spring), border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
 }
 
-button:hover:not(:disabled) {
-  background-color: #e2e8f0;
-  color: #1a202c;
-  transform: translateY(-1px);
+.main-content > .container .navigation button:hover:not(:disabled) {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  background: rgba(34, 211, 238, 0.08);
+  transform: translateY(-2px);
 }
 
-button:disabled {
-  opacity: 0.4;
+.main-content > .container .navigation button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.main-content > .container .navigation button:disabled {
+  opacity: 0.3;
   cursor: not-allowed;
-  transform: none;
 }
 
-/* Submit Button */
-.submit {
+/* Submit */
+.main-content > .container .submit {
+  position: relative;
+  overflow: hidden;
   width: 100%;
-  margin-top: 20px;
-  padding: 14px;
-  background-color: #059669;
-  color: #ffffff;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+  margin-top: 0.9rem;
+  padding: 1.05rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  background: var(--grad);
+  background-size: 200% auto;
+  box-shadow: 0 12px 30px -12px rgba(124, 92, 255, 0.85);
+  cursor: pointer;
+  animation: shimmer 5s linear infinite;
+  transition: transform 0.3s var(--spring), box-shadow 0.3s ease;
 }
 
-.submit:hover {
-  background-color: #047857;
-  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.3);
+.main-content > .container .submit::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s var(--ease);
 }
 
-/* Results Panel Styling */
-#resultsPanel {
-  display: none;
-  animation: fadeIn 0.4s ease-in-out;
+.main-content > .container .submit:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 18px 40px -14px rgba(124, 92, 255, 0.95);
 }
 
-#resultsPanel h2 {
-  font-size: 1.75rem;
-  color: #1a1f36;
+.main-content > .container .submit:hover::after { left: 130%; }
+.main-content > .container .submit:active { transform: scale(0.98); }
+
+/* Results */
+.main-content > .container #resultsPanel {
+  display: none; /* quiz.js sets it to block */
   text-align: center;
-  margin-bottom: 16px;
+  animation: reveal-in 0.8s var(--ease) both;
 }
 
-#scoreText, #percentageText, #performanceText {
-  text-align: center;
-  font-size: 1.1rem;
+.main-content > .container #resultsPanel h2 {
+  margin-bottom: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
   font-weight: 600;
-  color: #4f566b;
-  margin: 6px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
 }
 
-#performanceText {
-  font-size: 1.25rem;
-  color: #635bfc;
-  margin-bottom: 28px;
+.main-content > .container #scoreText {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 8vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  background: var(--grad);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 5s linear infinite, pop 0.7s var(--spring) 0.15s both;
 }
 
-/* Correction Output Box */
-#correction {
-  white-space: pre-wrap;
-  font-family: inherit;
+.main-content > .container #percentageText {
+  margin-top: 0.4rem;
+  font-family: var(--font-mono);
   font-size: 0.95rem;
-  line-height: 1.6;
-  background-color: #f8f9fc;
-  border: 1px solid #eef0f7;
-  border-radius: 10px;
-  padding: 20px;
-  color: #2b314e;
-  margin-top: 16px;
+  color: var(--muted);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.main-content > .container #performanceText {
+  width: fit-content;
+  margin: 1.1rem auto 0;
+  padding: 0.5rem 1.3rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #fff;
+  background: var(--grad);
+  border-radius: 999px;
+  animation: pop 0.6s var(--spring) 0.35s both, glow-pulse 2.6s ease-in-out 1s infinite;
+}
+
+.main-content > .container #resultsPanel h3 {
+  margin: 2.4rem 0 0.8rem;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--cyan);
+}
+
+.main-content > .container #correction {
+  max-height: 460px;
+  overflow: auto;
+  padding: 1.3rem 1.4rem;
+  text-align: left;
+  white-space: pre-wrap;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: var(--text);
+  background: var(--input-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+
+/* Keyframes local to the quiz */
+@keyframes pop {
+  from { opacity: 0; transform: translateY(14px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(20px); filter: blur(6px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.25; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 92, 255, 0.5); }
+  50%      { box-shadow: 0 0 0 10px rgba(124, 92, 255, 0); }
+}
+
+@media (max-width: 640px) {
+  .main-content > .container { padding: 1.8rem 1.25rem; }
+  .main-content > .container .navigation { grid-template-columns: repeat(2, 1fr); }
 }
