@@ -1,0 +1,207 @@
+/* ======================================================
+   QUIZ PAGE ENHANCED STYLES
+   ====================================================== */
+
+/* Main Container Card */
+.container {
+  max-width: 760px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+/* Headings */
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1f36;
+  text-align: center;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2b314e;
+  line-height: 1.5;
+}
+
+/* Progress Indicator */
+#progress {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #635bfc;
+  margin-bottom: 8px;
+}
+
+#questionText {
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+
+/* Multiple Choice Option Cards */
+.choice {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fc;
+  border: 2px solid #eef0f7;
+  border-radius: 10px;
+  margin: 12px 0;
+  padding: 14px 18px;
+  font-size: 1rem;
+  color: #3c4257;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.choice:hover {
+  background-color: #ffffff;
+  border-color: #635bfc;
+  box-shadow: 0 4px 12px rgba(99, 91, 252, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Custom Radio Input Alignment */
+.choice input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #a3acb9;
+  border-radius: 50%;
+  outline: none;
+  margin-right: 14px;
+  display: grid;
+  place-content: center;
+  transition: all 0.2s ease;
+}
+
+.choice input[type="radio"]::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 0.15s transform ease-in-out;
+  background-color: #ffffff;
+}
+
+.choice input[type="radio"]:checked {
+  background-color: #635bfc;
+  border-color: #635bfc;
+}
+
+.choice input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+.choice:has(input[type="radio"]:checked) {
+  background-color: #f4f3ff;
+  border-color: #635bfc;
+  color: #635bfc;
+}
+
+/* Navigation Buttons Group */
+.navigation {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 32px;
+}
+
+button {
+  padding: 12px 18px;
+  border-radius: 8px;
+  border: none;
+  background-color: #edf2f7;
+  color: #4a5568;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background-color: #e2e8f0;
+  color: #1a202c;
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Submit Button */
+.submit {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  background-color: #059669;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+}
+
+.submit:hover {
+  background-color: #047857;
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.3);
+}
+
+/* Results Panel Styling */
+#resultsPanel {
+  display: none;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+#resultsPanel h2 {
+  font-size: 1.75rem;
+  color: #1a1f36;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+#scoreText, #percentageText, #performanceText {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #4f566b;
+  margin: 6px 0;
+}
+
+#performanceText {
+  font-size: 1.25rem;
+  color: #635bfc;
+  margin-bottom: 28px;
+}
+
+/* Correction Output Box */
+#correction {
+  white-space: pre-wrap;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  background-color: #f8f9fc;
+  border: 1px solid #eef0f7;
+  border-radius: 10px;
+  padding: 20px;
+  color: #2b314e;
+  margin-top: 16px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
