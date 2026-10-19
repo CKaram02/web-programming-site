@@ -10,7 +10,8 @@
 <h2>Senior Engineering Student - Academic Profile</h2>
 <p>Complete this form to provide information about your academic background, technical skills, internship experience, and Final Year Project preferences.</p>
 
-<form action="{{ url_for('submit_profile') }}" method="post">
+<!-- Step 1: Interactive Profile Form -->
+<form id="profileForm" action="{{ url_for('submit_profile') }}" method="post">
     <!-- Hidden Version Field -->
     <input type="hidden" name="form_version" value="2026-2027">
 
@@ -45,12 +46,12 @@
 
         <div>
             <label for="portfolio">GitHub:</label>
-            <input type="url" id="portfolio" name="portfolio" placeholder="https://github.com/username" required>
+            <input type="url" id="portfolio" name="portfolio" placeholder="https://github.com/username">
         </div>
 
         <div>
             <label for="gin446">GIN446 website:</label>
-            <input type="url" id="gin446" name="gin446" placeholder="Your RENDER website link" required>
+            <input type="url" id="gin446" name="gin446" placeholder="Your RENDER website link">
         </div>
     </fieldset>
 
@@ -237,9 +238,123 @@
         <label for="confirmation">I confirm that the information provided is accurate.</label>
     </div>
 
-    <div>
-        <button type="submit">Submit Profile</button>
-        <button type="reset">Clear Form</button>
+    <div style="margin-top: 1rem;">
+        <button type="submit" class="btn-primary">Review Profile</button>
+        <button type="reset" class="btn-secondary">Clear Form</button>
     </div>
 </form>
+
+<!-- Step 2: Read-Only Review Panel -->
+<div id="reviewPanel" class="review-panel is-hidden">
+    <h3>Review Your Information</h3>
+    <p>Please double-check your submitted details before sending them to the university portal.</p>
+    
+    <div id="reviewContainer" class="review-grid"></div>
+
+    <div class="review-actions">
+        <button type="button" id="editBtn" class="btn-secondary">Edit Information</button>
+        <button type="button" id="confirmBtn" class="btn-primary">Confirm &amp; Submit</button>
+    </div>
+</div>
+
+<!-- JavaScript Interceptor & Logic -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("profileForm");
+    const reviewPanel = document.getElementById("reviewPanel");
+    const reviewContainer = document.getElementById("reviewContainer");
+    const editBtn = document.getElementById("editBtn");
+    const confirmBtn = document.getElementById("confirmBtn");
+
+    // 1. Intercept Submit Event
+    form.addEventListener("submit", function (e) {
+        e.preventDefault(); // Stop default browser POST request
+
+        // 2. Validate Form Rules
+        if (!form.checkValidity()) {
+            form.reportValidity(); // Display native HTML5 validation warnings
+            return;
+        }
+
+        // 3. Build & Populate Review Data
+        populateReviewPanel();
+
+        // 4. Toggle Visibility
+        form.classList.add("is-hidden");
+        reviewPanel.classList.remove("is-hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // 5. Edit Button: Return to Form without Data Loss
+    editBtn.addEventListener("click", function () {
+        reviewPanel.classList.add("is-hidden");
+        form.classList.remove("is-hidden");
+    });
+
+    // 6. Confirm & Submit: Programmatic Submit to Avoid Interceptor Loop
+    confirmBtn.addEventListener("click", function () {
+        form.submit(); // Bypasses the submit event listener directly
+    });
+
+    function populateReviewPanel() {
+        reviewContainer.innerHTML = "";
+
+        // Collect Values
+        const data = [
+            { label: "Student ID", value: document.getElementById("student_id").value },
+            { label: "Full Name", value: document.getElementById("fullname").value },
+            { label: "USEK Email", value: document.getElementById("email").value },
+            { label: "Mobile Number", value: document.getElementById("phone").value },
+            { label: "Date of Birth", value: document.getElementById("birthdate").value },
+            { label: "GitHub Profile", value: document.getElementById("portfolio").value },
+            { label: "GIN446 Website", value: document.getElementById("gin446").value },
+            { label: "Major", value: document.getElementById("major").value },
+            { label: "GPA", value: document.getElementById("gpa").value + " / 100" },
+            { label: "Credits Completed", value: document.getElementById("credits").value },
+            { 
+                label: "Expected Graduation", 
+                value: document.querySelector('input[name="graduation"]:checked')?.value || "N/A" 
+            },
+            { label: "Graduation Month", value: document.getElementById("graduation_month").value },
+            { 
+                label: "Internship Completed", 
+                value: document.querySelector('input[name="internship_completed"]:checked')?.value || "N/A" 
+            },
+            { 
+                label: "Areas of Experience", 
+                value: Array.from(document.querySelectorAll('input[name="skills"]:checked'))
+                        .map(cb => cb.value)
+                        .join(", ") || "None selected" 
+            },
+            { label: "Primary Language", value: document.getElementById("language").value },
+            { 
+                label: "Engineering Software", 
+                value: Array.from(document.getElementById("software").selectedOptions)
+                        .map(opt => opt.value)
+                        .join(", ") || "None selected" 
+            },
+            { label: "FYP Title", value: document.getElementById("project_title").value },
+            { label: "FYP Area", value: document.getElementById("project_area").value },
+            { label: "Team Size", value: document.getElementById("team_size").value },
+            { label: "Dashboard Color", value: document.getElementById("project_color").value },
+            { label: "Meeting Date & Time", value: `${document.getElementById("meeting_date").value || "N/A"} ${document.getElementById("meeting_time").value || ""}` },
+            { label: "Project Description", value: document.getElementById("description").value }
+        ];
+
+        // Render Read-Only Fields
+        data.forEach(item => {
+            const div = document.createElement("div");
+            div.className = "review-item";
+            div.innerHTML = `<label>${item.label}</label><span>${escapeHtml(item.value)}</span>`;
+            reviewContainer.appendChild(div);
+        });
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
+    }
+});
+</script>
 {% endblock %}
